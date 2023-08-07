@@ -21,7 +21,7 @@ cursor.execute(
     CREATE TABLE IF NOT EXISTS benefits (
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
-        price REAL NOT NULL
+        price TEXT NOT NULL
         );
     """
 )
@@ -32,7 +32,7 @@ cursor.execute(
     CREATE TABLE IF NOT EXISTS positions (
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
-        salary_base REAL NOT NULL
+        salary_base TEXT NOT NULL
         );
     """
 )
@@ -40,13 +40,15 @@ print("Tabela positions criada com sucesso")
 
 cursor.execute(
     """
-    CREATE TABLE IF NOT EXISTS human_resources (
+    CREATE TABLE IF NOT EXISTS humnan_resources (
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         employee_id INTEGER NOT NULL,
         benefit_id INTEGER NOT NULL,
         position_id INTEGER NOT NULL,
-        discount REAL NOT NULL,
-        total_hours_late REAL NOT NULL
+        tax TEXT NOT NULL,
+        total_hours_late REAL NOT NULL,
+        month INTEGER NOT NULL,
+        year INTEGER NOT NULL
         );
     """
 )

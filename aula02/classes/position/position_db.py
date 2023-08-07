@@ -13,7 +13,7 @@ def create_positions(positions: List[Position]):
     for position in positions:
         cursor.execute(
             """
-            INSERT INTO positions (name, salary)
+            INSERT INTO positions (name, salary_base)
             VALUES (?, ?)
             """, (position.name, position.salary_base)
         )

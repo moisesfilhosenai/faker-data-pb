@@ -1,0 +1,18 @@
+CARGO_ID,CARGO_NOME,CARGO_SALARIO_BASE
+1,Engenheiro Elétrico,5590
+2,Engenheiro Mecânico,6290
+3,Arquiteto,7890
+4,Analista de Sistemas,5190
+5,Desenvolvedor Júnior,3190
+6,Desenvolvedor Pleno,5290
+7,Desenvolvedor Sênior,7290
+8,Arquiteto de Software,9890
+9,Administrador Banco de Dados,12390
+10,Administrador Cloud,13190
+11,DevOps,9390
+12,Supervisor RH,13390
+13,Supervisor TI,17190
+14,Supervisor Produção,14790
+15,Motorista,4690
+16,Técnico,3190
+17,Diretor,23190

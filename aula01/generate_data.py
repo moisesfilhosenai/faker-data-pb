@@ -58,14 +58,9 @@ to_csv_sellers("outputs/vendedores.csv")
 # Tabela de pedidos
 orders = []
 for _ in range(50000):
-    index_customer = randrange(1, len(customers_db))
-    customer = customers_db[index_customer]
-
-    index_seller = randrange(1, len(sellers_db))
-    seller = sellers_db[index_seller]
-
-    index_product = randrange(1, len(products_db))
-    product = products_db[index_product]
+    customer = customers_db[randrange(0, len(customers_db)-1)]
+    seller = sellers_db[randrange(0, len(sellers_db)-1)]
+    product = products_db[randrange(0, len(products_db)-1)]
 
     orders.append(Order(customer_id=customer["id"],
                         seller_id=seller["id"],
