@@ -1,6 +1,6 @@
 """
 Geração de base de dados faker para curso de Power Bi (PB)
-São 3 tabelas a serem geradas conforme arquivo aulas-power-bi.drawio
+São 3 tabelas a serem geradas conforme arquivo aulas-power-bi.drawio aula01
 Os dados são gerados com nomes despadronizados para corrigir dentro do PB
 """
 from random import randrange
