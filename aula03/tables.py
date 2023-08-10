@@ -15,4 +15,15 @@ cursor.execute(
 )
 print("Tabela category_courses criada com sucesso")
 
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS courses (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        category_course_id INTEGER NOT NULL
+        );
+    """
+)
+print("Tabela courses criada com sucesso")
+
 conn.close()
