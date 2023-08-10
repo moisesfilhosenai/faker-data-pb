@@ -1,8 +1,12 @@
+from random import randrange
 from aula03.classes.category_course.category_course import CategoryCourse
 from aula03.classes.category_course.category_course_db import create_categories_courses, to_csv_categories_courses
 from aula03.classes.course.course import Course
 from aula03.classes.course.course_db import create_courses, to_csv_courses
+from aula03.classes.student.student import Student
+from aula03.classes.student.student_db import create_students, to_csv_students
 
+# Tabela categoria cursos
 categories_courses = [
     CategoryCourse("Curso Técnico"),
     CategoryCourse("Graduação"),
@@ -11,6 +15,7 @@ categories_courses = [
 create_categories_courses(categories_courses)
 to_csv_categories_courses("outputs/categorias_cursos.csv")
 
+# Tabela cursos
 courses = [
     Course("Técnico em enfermagem", 1),
     Course("Técnico em eletroeletrônica", 1),
@@ -28,3 +33,7 @@ courses = [
 create_courses(courses)
 to_csv_courses("outputs/cursos.csv")
 
+# Tabela alunos
+students = [Student() for _ in range(50)]
+create_students(students)
+to_csv_students("outputs/alunos.csv")

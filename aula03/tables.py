@@ -26,4 +26,15 @@ cursor.execute(
 )
 print("Tabela courses criada com sucesso")
 
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS students (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL
+        );
+    """
+)
+print("Tabela students criada com sucesso")
+
 conn.close()
