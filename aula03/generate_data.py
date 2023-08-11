@@ -2,11 +2,13 @@ from random import randrange
 from aula03.classes.category_course.category_course import CategoryCourse
 from aula03.classes.category_course.category_course_db import create_categories_courses, to_csv_categories_courses
 from aula03.classes.course.course import Course
-from aula03.classes.course.course_db import create_courses, to_csv_courses
+from aula03.classes.course.course_db import create_courses, to_csv_courses, get_courses
 from aula03.classes.student.student import Student
-from aula03.classes.student.student_db import create_students, to_csv_students
+from aula03.classes.student.student_db import create_students, to_csv_students, get_students
 from aula03.classes.discipline.discipline import Discipline
-from aula03.classes.discipline.discipline_db import create_disciplines, to_csv_disciplines
+from aula03.classes.discipline.discipline_db import create_disciplines, to_csv_disciplines, get_disciplines_by_course_id
+from aula03.classes.final_notes.final_notes import FinalNotes
+from aula03.classes.final_notes.final_notes_db import create_final_notes, to_csv_final_notes
 
 # Tabela categoria cursos
 categories_courses = [
@@ -60,4 +62,19 @@ disciplines = [
     Discipline("Geração de relatórios empresariais", 7)
 ]
 create_disciplines(disciplines)
-to_csv_disciplines("outputs/disciplinas")
+to_csv_disciplines("outputs/disciplinas.csv")
+
+# Tabela medias
+final_notes = []
+courses = get_courses()
+
+for student in get_students():
+    course = courses[randrange(0, len(courses) - 1)]
+    discipline = get_disciplines_by_course_id(course["id"])
+
+    final_notes.append(FinalNotes(student_id=student["id"],
+                                  course_id=course["id"],
+                                  discipline_id=discipline["id"]))
+
+create_final_notes(final_notes)
+to_csv_final_notes("outputs/medias.csv")

@@ -48,5 +48,16 @@ cursor.execute(
 )
 print("Tabela disciplines criada com sucesso")
 
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS final_notes (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        student_id INTEGER NOT NULL,        
+        course_id INTEGER NOT NULL,
+        discipline_id INTEGER NOT NULL
+        );
+    """
+)
+print("Tabela final_notes criada com sucesso")
 
 conn.close()

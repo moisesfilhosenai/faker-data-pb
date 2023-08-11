@@ -26,7 +26,7 @@ def get_disciplines():
     conn = sqlite3.connect(aula03_database)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
-    disciplines = conn.execute(
+    disciplines = cursor.execute(
         """
         SELECT * FROM disciplines;
         """
@@ -34,6 +34,18 @@ def get_disciplines():
     disciplines = disciplines.fetchall()
     conn.close()
     return disciplines
+
+
+def get_disciplines_by_course_id(course_id):
+    conn = sqlite3.connect(aula03_database)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    discipline = cursor.execute(
+        f"SELECT * FROM disciplines WHERE course_id = {course_id}"
+    )
+    discipline = discipline.fetchone()
+    conn.close()
+    return discipline
 
 
 def to_csv_disciplines(filename):

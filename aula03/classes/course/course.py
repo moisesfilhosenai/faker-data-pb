@@ -16,3 +16,5 @@ class Course:
     def category_course_id(self):
         return self.__category_course_id
 
+    def __str__(self):
+        return f"ID: {self.__id}, Name: {self.__name}"
