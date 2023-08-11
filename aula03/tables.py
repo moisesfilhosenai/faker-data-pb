@@ -60,4 +60,17 @@ cursor.execute(
 )
 print("Tabela final_notes criada com sucesso")
 
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS diary_class (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        student_id INTEGER NOT NULL,  
+        discipline_id INTEGER NOT NULL,
+        data TEXT NOT NULL,
+        number_absences INTEGER NOT NULL,
+        );
+    """
+)
+print("Tabela diary_class criada com sucesso")
+
 conn.close()
