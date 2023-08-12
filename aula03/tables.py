@@ -67,10 +67,23 @@ cursor.execute(
         student_id INTEGER NOT NULL,  
         discipline_id INTEGER NOT NULL,
         data TEXT NOT NULL,
-        number_absences INTEGER NOT NULL,
+        number_absences INTEGER NOT NULL
         );
     """
 )
 print("Tabela diary_class criada com sucesso")
+
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS activity_notes (
+        id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        student_id INTEGER NOT NULL,  
+        discipline_id INTEGER NOT NULL,
+        note REAL NOT NULL,
+        weight INTEGER NOT NULL
+        );
+    """
+)
+print("Tabela activity_notes criada com sucesso")
 
 conn.close()

@@ -47,6 +47,5 @@ def to_csv_categories_courses(filename):
         for categories_course in categories_courses:
             writer.writerow([
                 categories_course["id"],
-                categories_course["name"],
-
+                categories_course["name"]
             ])

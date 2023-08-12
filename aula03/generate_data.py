@@ -9,6 +9,9 @@ from aula03.classes.discipline.discipline import Discipline
 from aula03.classes.discipline.discipline_db import create_disciplines, to_csv_disciplines, get_disciplines_by_course_id
 from aula03.classes.final_notes.final_notes import FinalNotes
 from aula03.classes.final_notes.final_notes_db import create_final_notes, to_csv_final_notes
+from aula03.classes.activity_note.activity_note import ActivityNote
+from aula03.classes.activity_note.activity_note_db import create_activities_notes, to_csv_activities_notes
+
 
 # Tabela categoria cursos
 categories_courses = [
@@ -67,8 +70,9 @@ to_csv_disciplines("outputs/disciplinas.csv")
 # Tabela medias
 final_notes = []
 courses = get_courses()
+students =  get_students()
 
-for student in get_students():
+for student in students:
     course = courses[randrange(0, len(courses) - 1)]
     discipline = get_disciplines_by_course_id(course["id"])
 
@@ -78,3 +82,16 @@ for student in get_students():
 
 create_final_notes(final_notes)
 to_csv_final_notes("outputs/medias.csv")
+
+# Tabela de notas atividades
+activities_notes = []
+
+for student in students:
+    course = courses[randrange(0, len(courses) - 1)]
+    discipline = get_disciplines_by_course_id(course["id"])
+
+    activities_notes.append(ActivityNote(student_id=student["id"],
+                                         discipline_id=discipline["id"]))
+
+create_activities_notes(activities_notes)
+to_csv_activities_notes("outputs/notas_atividades.csv")
