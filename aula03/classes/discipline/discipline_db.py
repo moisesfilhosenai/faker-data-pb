@@ -2,51 +2,50 @@ import csv
 import sqlite3
 from typing import List
 from constants import aula03_database
-from aula03.classes.student.student import Student
+from aula03.classes.discipline.discipline import Discipline
 
 
-def create_students(students: List[Student]):
+def create_disciplines(disciplines: List[Discipline]):
     conn = sqlite3.connect(aula03_database)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    for student in students:
+    for discipline in disciplines:
         cursor.execute(
             """
-            INSERT INTO students (name, email)
-            VALUES (?, ?)
-            """, (student.name, student.email)
+            INSERT INTO disciplines (name)
+            VALUES (?)
+            """, (discipline.name,)
         )
     cursor.close()
     conn.commit()
     conn.close()
 
 
-def get_students():
+def get_disciplines():
     conn = sqlite3.connect(aula03_database)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
-    students = cursor.execute(
+    disciplines = cursor.execute(
         """
-        SELECT * FROM students;
+        SELECT * FROM disciplines;
         """
     )
-    students = students.fetchall()
+    disciplines = disciplines.fetchall()
     conn.close()
-    return students
+    return disciplines
 
 
-def to_csv_students(filename):
-    header = ["ALUNO_ID", "ALUNO_NOME", "ALUNO_EMAIL"]
-    students = get_students()
+def to_csv_disciplines(filename):
+    header = ["DISCIPLINA_ID", "DISCIPLINA_NOME"]
+    disciplines = get_disciplines()
 
     with open(filename, "w", encoding="utf-8", newline='') as file:
         writer = csv.writer(file, delimiter=";")
         writer.writerow(header)
 
-        for student in students:
+        for discipline in disciplines:
             writer.writerow([
-                student["id"],
-                student["name"],
-                student["email"]
+                discipline["id"],
+                discipline["name"]
             ])

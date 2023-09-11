@@ -2,51 +2,51 @@ import csv
 import sqlite3
 from typing import List
 from constants import aula03_database
-from aula03.classes.student.student import Student
+from aula03.classes.notes.note import Note
 
 
-def create_students(students: List[Student]):
+def create_notes(notes: List[Note]):
     conn = sqlite3.connect(aula03_database)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    for student in students:
+    for note in notes:
         cursor.execute(
             """
-            INSERT INTO students (name, email)
-            VALUES (?, ?)
-            """, (student.name, student.email)
+            INSERT INTO notes (student_id, activity_id, available)
+            VALUES (?, ?, ?)
+            """, (note.student_id, note.activity_id, note.available)
         )
     cursor.close()
     conn.commit()
     conn.close()
 
 
-def get_students():
+def get_notes():
     conn = sqlite3.connect(aula03_database)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
-    students = cursor.execute(
+    notes = cursor.execute(
         """
-        SELECT * FROM students;
+        SELECT * FROM notes;
         """
     )
-    students = students.fetchall()
+    notes = notes.fetchall()
     conn.close()
-    return students
+    return notes
 
 
-def to_csv_students(filename):
-    header = ["ALUNO_ID", "ALUNO_NOME", "ALUNO_EMAIL"]
-    students = get_students()
+def to_csv_notes(filename):
+    header = ["ALUNO_ID", "ATIVIDADE_ID", "NOTA"]
+    notes = get_notes()
 
     with open(filename, "w", encoding="utf-8", newline='') as file:
         writer = csv.writer(file, delimiter=";")
         writer.writerow(header)
 
-        for student in students:
+        for note in notes:
             writer.writerow([
-                student["id"],
-                student["name"],
-                student["email"]
+                note["student_id"],
+                note["activity_id"],
+                note["available"]
             ])

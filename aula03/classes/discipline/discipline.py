@@ -1,8 +1,7 @@
 class Discipline:
-    def __init__(self, name, course_id):
+    def __init__(self, name):
         self.__id = 0
         self.__name = name
-        self.__course_id = course_id
 
     @property
     def id(self):
