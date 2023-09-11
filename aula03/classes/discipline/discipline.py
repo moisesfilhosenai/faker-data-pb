@@ -14,3 +14,6 @@ class Discipline:
     @property
     def course_id(self):
         return self.__course_id
+
+    def __str__(self):
+        return f"ID: {self.__id}, Name: {self.__name}"
